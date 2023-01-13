@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US" 
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!-- as span são pra debug, elas são substituídas junto com os elementos pai que contêm th:replace ou layout:fragment -->
+    <main layout:fragment="main-body">
+        <span>page's body</span>
+    </main>
+
+    <!-- Se não funfar, troca a tag footer por div -->
+    <footer th:replace="./fragments/footer :: footer">
+        <span>footer</span>
+    </footer>
+
+</body>
+
+</html>
