@@ -3,7 +3,9 @@
 <head><meta charset="UTF-8"></head>
 <body>
     <footer th:fragment="footer">
-        Copyright&copy; <span th:text="${#dates.year(#dates.createNow())}"></span> James. All Rights Reserved.
+        <p>
+            Copyright&copy; <span th:text="${#dates.year(#dates.createNow())}"></span> James. All Rights Reserved.
+        </p>
     </footer>
 </body>
 </html>

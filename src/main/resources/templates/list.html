@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US" layout:decorate="~{main-layout}">
+<head>
+
+    <meta charset="UTF-8">
+    <title>List</title>
+
+</head>
+<body>
+
+    <main layout:fragment="main-body">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${name}">Name</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+</body>
+</html>
