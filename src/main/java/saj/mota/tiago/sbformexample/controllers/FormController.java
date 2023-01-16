@@ -16,7 +16,7 @@ public class FormController {
     @PostMapping("/submit")
     public String submit(@RequestBody String name, Model model) {
         if (name.isEmpty()) {
-            name = "default";
+            name = "empty input";
         }
         model.addAttribute("name", name);
         return "list";

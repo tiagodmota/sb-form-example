@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US" layout:decorate="~{main-layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Greeting Form</title>
+</head>
+<body>
+
+    <main layout:fragment="main-body">
+        <h1>Welcome to the Greeting Formulary</h1>
+        <fieldset>
+            <legend>Data</legend>
+            <form action="#" method="POST"
+            th:action="@{/greeting-submit}"
+            th:object="${greeting}"
+            >
+                <label for="id">ID:</label>
+                <input th:field="*{id}"
+                type="number" name="id" id="id">
+                <br>
+                <label for="content">Content:</label>
+                <input th:field="*{content}"
+                type="text" name="content" id="content">
+                <br>
+                <input type="submit" value="Save">
+            </form>
+        </fieldset>
+    </main>
+    
+</body>
+</html>
