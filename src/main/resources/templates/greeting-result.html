@@ -9,15 +9,12 @@
     <main layout:fragment="main-body">
         <h1>Welcome to the Greeting Result</h1>
         <fieldset>
-            <legend>Data</legend>
-            <form action="#" method="#" th:object="greeting">
-                <label for="id">ID:</label>
-                <input type="number" name="id" id="id" th:value="*{id}">
-                <br>
-                <label for="content">Content:</label>
-                <input type="text" name="content" id="content" th:value="*{content}">
-                <br>
-                <input type="submit" value="Submit">
+            <legend>Bound Data</legend>
+            <form action="#" method="#" 
+            th:object="${greeting}">
+                <p>ID: <input type="text" th:value="*{id}"></p>
+                <p>Content:<input type="text" th:value="*{content}"></p>
+                <span style="display: block;">Get back to <a href="/greeting-form">Greeting Formulary</a></span>
             </form>
         </fieldset>
     </main>

@@ -14,15 +14,11 @@
             th:action="@{/greeting-submit}"
             th:object="${greeting}"
             >
-                <label for="id">ID:</label>
-                <input th:field="*{id}"
-                type="number" name="id" id="id">
-                <br>
-                <label for="content">Content:</label>
-                <input th:field="*{content}"
-                type="text" name="content" id="content">
-                <br>
-                <input type="submit" value="Save">
+                <p> ID: <input type="number" th:field="*{id}"> </p>
+                <p> Content: <input type="text" th:field="*{content}"></p>
+                
+                <input type="submit" value="Save" style="display: block">
+                <input type="reset" value="Reset"  style="display: block">
             </form>
         </fieldset>
     </main>
