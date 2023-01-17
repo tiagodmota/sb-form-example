@@ -12,10 +12,15 @@
         <h1>Fill it!</h1>
         <fieldset>
             <legend>Person</legend>
-            <form action="/form/submit" method="POST">
+            <form 
+            action="#"
+            method="POST"
+            th:action="@{/form/submit}"
+            th:object="${name}"
+            >
                 <label for="name">Name: </label>
-                <input type="text" name="name" id="name" required>
-                <input type="submit" value="Submit">
+                <input type="text" th:field="*{nome}" id="name" required>
+                <input type="submit" value="Send">
             </form>
         </fieldset>
     </main>

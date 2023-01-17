@@ -17,8 +17,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td th:text="${name}">Name</td>
+                <tr th:object="${name}">
+                    <td th:text="*{nome}">Name</td>
                 </tr>
             </tbody>
         </table>
