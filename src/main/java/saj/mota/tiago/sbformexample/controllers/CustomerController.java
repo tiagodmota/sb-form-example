@@ -1,6 +1,5 @@
 package saj.mota.tiago.sbformexample.controllers;
 
-
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,21 +10,21 @@ public class CustomerController {
     
     private CustomerRepository customerRepository;
     
-    @GetMapping("customer-form")
-    public String customerForm(Customer customer) {
-        return "customerForm";
+    @GetMapping("/add-customer")
+    public String addCustomer(Customer customer) {
+        return "add-customer";
     }
 
-    @PostMapping("customer-save")
-    public String customerSave(@ModelAttribute Customer customer) {
+    @PostMapping("/save-customer")
+    public String saveCustomer(@ModelAttribute Customer customer) {
         customerRepository.save(customer);
-        return "redirect:/customerList";
+        return "redirect:/list-customer";
+        // Se não funfar, tira esse redirect.
     }
 
-    @GetMapping("customer-list")
-    public String customerList(Iterable<Customer> customerList, ModelMap model) {
-        customerList = customerRepository.findAll();
-        model.addAttribute("customerList", customerList);
-        return "customerList";
+    @GetMapping("/list-customer")
+    public String listCustomer(ModelMap model) {
+        model.addAttribute("customerList", customerRepository.findAll());
+        return "list-customer";
     }
 }
