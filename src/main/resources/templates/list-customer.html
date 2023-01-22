@@ -15,10 +15,10 @@
                 </tr>
            </thead>
            <tbody>
-                <tr th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr th:each="c : ${customerList}">
+                    <td th:text="${c.id}">1</td>
+                    <td th:text="${c.name}">tiago</td>
+                    <td th:text="${c.lastName}">mota</td>                
                 </tr>
            </tbody>
         </table>

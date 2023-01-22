@@ -9,8 +9,14 @@
         <form action="#" method="POST"
         th:action="@{/save-customer}"
         th:object="${customer}">
-            <p>Name: <input type="text" th:field="*{name}"/></p>
-            <p>Last Name: <input type="text" th:field="*{lastName}"/></p>
+            <p>
+                Name: <input type="text" th:field="*{name}"/>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <p>
+            <p>
+                Last Name: <input type="text" th:field="*{lastName}"/>
+                <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+            </p>
             <button type="submit">REGISTER</button>
         </form>
     </main>

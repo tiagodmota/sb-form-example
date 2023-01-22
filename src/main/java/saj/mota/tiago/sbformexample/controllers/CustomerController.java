@@ -1,14 +1,20 @@
 package saj.mota.tiago.sbformexample.controllers;
 
-import org.springframework.ui.ModelMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.*;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.*;
 import saj.mota.tiago.sbformexample.entities.Customer;
-import saj.mota.tiago.sbformexample.repositories.CustomerRepository;
+import saj.mota.tiago.sbformexample.services.CustomerService;
 
+@Controller
 public class CustomerController {
     
-    private CustomerRepository customerRepository;
+    @Autowired
+    private CustomerService customerService;
     
     @GetMapping("/add-customer")
     public String addCustomer(Customer customer) {
@@ -16,15 +22,27 @@ public class CustomerController {
     }
 
     @PostMapping("/save-customer")
-    public String saveCustomer(@ModelAttribute Customer customer) {
-        customerRepository.save(customer);
-        return "redirect:/list-customer";
-        // Se não funfar, tira esse redirect.
+    public String saveCustomer(@ModelAttribute @Valid Customer customer, BindingResult result, Model model) {
+
+        if (result.hasErrors()){
+            return "add-customer";
+        } else {
+            customerService.save(customer);
+            return "redirect:/list-customer";
+        }
+    
     }
 
     @GetMapping("/list-customer")
     public String listCustomer(ModelMap model) {
-        model.addAttribute("customerList", customerRepository.findAll());
+        model.addAttribute("customerList", customerService.getAll());
         return "list-customer";
     }
+
+    @GetMapping("/customer/{id}")
+    public String customerById(@PathVariable(name = "id", required = true) String id, Model model) {
+        model.addAttribute("customerList", customerService.findById(Long.valueOf(id)));
+        return "list-customer";
+    }
+
 }
