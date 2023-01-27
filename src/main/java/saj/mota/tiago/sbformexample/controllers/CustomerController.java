@@ -10,6 +10,7 @@ import jakarta.validation.*;
 import saj.mota.tiago.sbformexample.entities.Customer;
 import saj.mota.tiago.sbformexample.services.CustomerService;
 
+
 @Controller
 public class CustomerController {
     
@@ -22,7 +23,7 @@ public class CustomerController {
     }
 
     @PostMapping("/save-customer")
-    public String saveCustomer(@ModelAttribute @Valid Customer customer, BindingResult result, Model model) {
+    public String saveCustomer(@ModelAttribute @Valid Customer customer, BindingResult result) {
 
         if (result.hasErrors()){
             return "add-customer";
@@ -44,5 +45,20 @@ public class CustomerController {
         model.addAttribute("customerList", customerService.findById(Long.valueOf(id)));
         return "list-customer";
     }
+
+    @GetMapping("/delete-customer")
+    public String deleteCustomer(
+        @RequestParam(name = "id", required = true) 
+        String id) {
+        customerService.delete(Long.valueOf(id));
+        return "redirect:/list-customer";
+    }
+
+    @GetMapping("/edit-customer")
+    public String editCustomer(@RequestParam(name = "id", required = true) String id, Model model) {
+        model.addAttribute("customer", customerService.findById(Long.valueOf(id)));
+        return "add-customer";
+    }
+
 
 }

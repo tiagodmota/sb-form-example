@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html layout:decorate="~{main-layout}">
+
 <head>
     <meta charset="UTF-8">
     <title>User Listing</title>
 </head>
-<body>    
+
+<body>
     <main layout:fragment="main-body">
-        <table>
-           <thead>
+        <table th:unless="${#lists.isEmpty(customerList)}">
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>NAME</th>
                     <th>LAST NAME</th>
+                    <th>ADDRESS NUMBER</th>
+                    <th>actions</th>
                 </tr>
-           </thead>
-           <tbody>
+            </thead>
+            <tbody>
                 <tr th:each="c : ${customerList}">
                     <td th:text="${c.id}">1</td>
                     <td th:text="${c.name}">tiago</td>
-                    <td th:text="${c.lastName}">mota</td>                
+                    <td th:text="${c.lastName}">mota</td>
+                    <td th:text="${c.address.number}">162</td>
+                    <td colspan="2">
+
+                        <a th:href="@{/delete-customer(id=${c.id})}">DELETE</a>
+
+                        <a th:href="@{/edit-customer(id=${c.id})}">EDIT</a>
+
+                    </td>
                 </tr>
-           </tbody>
+            </tbody>
         </table>
+
+        <div th:if="${#lists.isEmpty(customerList)}">
+            <span>
+                OOPS! NOT FIND IT.
+            </span>
+        </div>
     </main>
 </body>
+
 </html>
